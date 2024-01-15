@@ -9,49 +9,55 @@ function UserForm({ onSubmitButton }) {
   </form>)
 }
 
-function UserList({ userList }) {
-  console.log(userList);
+function UserList(props) {
+  const userList = props.userList;
+  console.log(props);
   if (!userList) {
     return(<p>no data to show</p>)
   }
   return(
-    <>
-      {
-        userList.map((user) => {
-          return (
-            <li>
-              <p>{user.firstName}</p>
-              <p>{user.lastName}</p>
-              <p>{user.phone}</p>
-            </li>
-          )
-        })
-      }
-    </>
+    <div>
+      <ul>
+        {
+          userList.map((user, key) => {
+            return (<li key={key}>
+                    <p>{user.firstName}</p>
+                    <p>{user.lastName}</p>
+                    <p>{user.phone}</p>
+                  </li>)
+          })
+        }
+      </ul>
+    </div>
   )
 }
 
 
 function App() {
-  const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState([
+    {
+      firstName: "Aryanne",
+      lastName: "Callata",
+      phone: 123
+    }
+  ]);
 
   const onSubmitButton = (e) => {
     e.preventDefault();
 
     const newUser = {
-      firstName: e.target.firstName,
-      lastName: e.target.lastName,
-      phone: e.target.phone
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      phone: e.target.phone.value
     }
-    setUserList([...userList, newUser]);
 
-    console.log(userList);
+    setUserList([...userList, newUser]);
   }
 
   return (
     <div className="App">
-      <UserForm userList={userList}/>
-      <UserList onSubmitButton={onSubmitButton}/>
+      <UserForm onSubmitButton={onSubmitButton}/>
+      <UserList userList={userList}/>
     </div>
   );
 }
