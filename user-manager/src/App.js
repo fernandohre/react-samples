@@ -1,7 +1,8 @@
-import './App.css';
-import React, {useState} from 'react';
-import UserForm from './components/UserForm'
-import UserResults from './components/UserResults';
+import "./App.css";
+import React, { useState } from "react";
+import UserForm from "./components/UserForm";
+import UserResults from "./components/UserResults";
+
 function App() {
   const [userList, setUserList] = useState([]);
 
@@ -11,16 +12,16 @@ function App() {
     const newUser = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
-      phone: e.target.phone.value
-    }
+      phone: e.target.phone.value,
+    };
 
     setUserList([...userList, newUser]);
-  }
+  };
 
   return (
     <div className="App">
-      <UserForm onSubmitButton={onSubmitButton}/>
-      <UserResults userList={userList}/>
+      <UserForm onSubmitButton={onSubmitButton} />
+      <UserResults userList={userList} />
     </div>
   );
 }
