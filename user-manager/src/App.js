@@ -1,46 +1,9 @@
 import './App.css';
 import React, {useState} from 'react';
-function UserForm({ onSubmitButton }) {
-  return (<form onSubmit={onSubmitButton}>
-    <input name="firstName" />
-    <input name="lastName" />
-    <input name="phone" />
-    <button>add</button>
-  </form>)
-}
-
-function UserList(props) {
-  const userList = props.userList;
-  console.log(props);
-  if (!userList) {
-    return(<p>no data to show</p>)
-  }
-  return(
-    <div>
-      <ul>
-        {
-          userList.map((user, key) => {
-            return (<li key={key}>
-                    <p>{user.firstName}</p>
-                    <p>{user.lastName}</p>
-                    <p>{user.phone}</p>
-                  </li>)
-          })
-        }
-      </ul>
-    </div>
-  )
-}
-
-
+import UserForm from './components/UserForm'
+import UserResults from './components/UserResults';
 function App() {
-  const [userList, setUserList] = useState([
-    {
-      firstName: "Aryanne",
-      lastName: "Callata",
-      phone: 123
-    }
-  ]);
+  const [userList, setUserList] = useState([]);
 
   const onSubmitButton = (e) => {
     e.preventDefault();
@@ -57,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <UserForm onSubmitButton={onSubmitButton}/>
-      <UserList userList={userList}/>
+      <UserResults userList={userList}/>
     </div>
   );
 }
