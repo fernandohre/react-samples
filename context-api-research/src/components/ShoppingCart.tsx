@@ -16,7 +16,11 @@ const ShoppingCart = () => {
   const clearCart = () => {
     cartDispatch({ type: 'CLEAR_CART' });
   };
-
+  
+  const generateRandomId = () => {
+    return Math.floor(Math.random() * 100000);
+  };
+  
   return (
     <div>
       <h2>Shopping Cart</h2>
@@ -27,9 +31,10 @@ const ShoppingCart = () => {
           </li>
         ))}
       </ul>
-      <button onClick={() => addToCart({ id: 1, name: 'Product A' })}>Add Product A</button>
-      <button onClick={() => addToCart({ id: 2, name: 'Product B' })}>Add Product B</button>
+      <button onClick={() => addToCart({ id: generateRandomId(), name: 'Product A' })}>Add Product A</button>
+      <button onClick={() => addToCart({ id: generateRandomId(), name: 'Product B' })}>Add Product B</button>
       <button onClick={clearCart}>Clear Cart</button>
+      <h3>Total: {cartState.items.length} items</h3>
     </div>
   );
 };
